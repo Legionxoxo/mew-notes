@@ -42,6 +42,8 @@ Follow these instructions to get the project up and running on your local machin
     -   Backend (Node.js API): `http://localhost:4000`
     -   Python API: `http://localhost:5000`
 
+## Note -> put your cloud pgvector db like neondb key inside node-api(DATABASE_URL)
+
 ### Stopping the application
 
 To stop the running containers, press `Ctrl+C` in the terminal where `docker compose up` is running.
