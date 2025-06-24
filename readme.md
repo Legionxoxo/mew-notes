@@ -24,7 +24,7 @@ Follow these instructions to get the project up and running on your local machin
 1.  **Clone the repository:**
 
     ```bash
-    git clone (https://github.com/Legionxoxo/mew-notes.git)
+    git clone https://github.com/Legionxoxo/mew-notes.git
     cd docker-notes
     ```
 
