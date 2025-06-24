@@ -1,0 +1,30 @@
+# Node modules - always rebuilt in container
+node_modules
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+
+# Env and secrets
+.env
+.env.*
+*.pem
+*.key
+*.crt
+
+# OS / Editor files
+.DS_Store
+Thumbs.db
+.vscode
+.idea
+
+# Git
+.git
+.gitignore
+
+# Build artifacts (if any)
+dist
+build
+coverage
