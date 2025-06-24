@@ -1,0 +1,63 @@
+services:
+    frontend:
+        build:
+            context: ./nextjs-app
+            dockerfile: Dockerfile
+        ports:
+            - "3000:3000"
+        depends_on:
+            - backend
+        develop:
+            watch:
+                - path: ./nextjs-app/package.json
+                  action: rebuild
+                - path: ./nextjs-app/package-lock.json
+                  action: rebuild
+                - path: ./next.config.js
+                  action: rebuild
+                - path: ./nextjs-app
+                  target: /app
+                  action: sync
+        environment:
+            NODE_ENV: development
+            BACKEND_API_URL: http://backend:4000
+
+    backend:
+        build:
+            context: ./node-api
+            dockerfile: Dockerfile
+        ports:
+            - "4000:4000"
+        env_file:
+            - ./node-api/.env
+        depends_on:
+            - pythonapi
+        develop:
+            watch:
+                - path: ./node-api/package.json
+                  action: rebuild
+                - path: ./node-api/package-lock.json
+                  action: rebuild
+                - path: ./node-api
+                  target: /app
+                  action: sync
+        environment:
+            PORT: 4000
+            PYTHON_API_URL: http://pythonapi:5000
+            CLIENT_ORIGIN: http://localhost:3000
+
+    pythonapi:
+        build:
+            context: ./python-api
+            dockerfile: Dockerfile
+        ports:
+            - "5000:5000"
+        env_file:
+            - ./python-api/.env
+        develop:
+            watch:
+                - path: ./python-api/requirements.txt
+                  action: rebuild
+                - path: ./python-api
+                  target: /app
+                  action: sync
